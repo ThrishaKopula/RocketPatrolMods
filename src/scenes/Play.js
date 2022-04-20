@@ -69,6 +69,7 @@ class Play extends Phaser.Scene {
         this.road.tilePositionX -= 4; //parallax could be here
         this.mainBuilding.tilePositionX -= 2;
         this.backBuilding.tilePositionX -= 1;
+        this.background.tilePositionX -= 0.5;
         this.p1Rocket.update();
         this.ship01.update();               // update spaceships (x3)
         this.ship02.update();

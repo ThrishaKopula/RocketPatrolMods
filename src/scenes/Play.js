@@ -5,7 +5,7 @@ class Play extends Phaser.Scene {
     
     create() {
         // place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'newStarfield').setOrigin(0, 0);
+        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
         // white borders
@@ -62,7 +62,7 @@ class Play extends Phaser.Scene {
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
         }
-        this.starfield.tilePositionX -= 4;
+        this.starfield.tilePositionX -= 4; //parallax could be here
         this.p1Rocket.update();
         this.ship01.update();               // update spaceships (x3)
         this.ship02.update();

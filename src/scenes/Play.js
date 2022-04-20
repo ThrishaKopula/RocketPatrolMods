@@ -11,6 +11,7 @@ class Play extends Phaser.Scene {
         this.road = this.add.tileSprite(0, 0, 640, 480, 'road').setOrigin(0, 0);
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x55b3b4).setOrigin(0, 0);
+        this.add.rectangle(0, borderUISize + borderPadding-10, game.config.width, borderUISize * 2, 0x1a3c3d).setOrigin(0, 0);
         // white borders
         this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);

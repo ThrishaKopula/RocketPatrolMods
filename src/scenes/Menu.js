@@ -8,13 +8,12 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
-        this.load.fontFamily('font', './assets/PixelFont.ttf');
     }
 
     create() {
         // menu text configuration
         let menuConfig = {
-            fontFamily: 'font',
+            fontFamily: 'courier',
             fontSize: '28px',
             backgroundColor: '#F3B141',
             color: '#4f0c4d',

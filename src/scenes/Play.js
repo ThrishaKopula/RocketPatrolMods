@@ -40,7 +40,7 @@ class Play extends Phaser.Scene {
         let scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            //backgroundColor: '#F3B141',
+            backgroundColor: '#55b3b4',
             color: '#000000',
             align: 'right',
             padding: {
@@ -49,7 +49,7 @@ class Play extends Phaser.Scene {
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, 'SCORE: ', this.p1Score, scoreConfig);
         // GAME OVER flag
         this.gameOver = false;
         // 60-second play clock

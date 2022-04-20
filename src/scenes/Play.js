@@ -6,9 +6,9 @@ class Play extends Phaser.Scene {
     create() {
         // place tile sprite
         this.road = this.add.tileSprite(0, 0, 640, 480, 'road').setOrigin(0, 0);
-        this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
         this.mainBuilding = this.add.tileSprite(0, 0, 640, 480, 'mainBuilding').setOrigin(0, 0);
         this.backBuilding = this.add.tileSprite(0, 0, 640, 480, 'backBuilding').setOrigin(0, 0);
+        this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
         // white borders
@@ -128,9 +128,9 @@ class Play extends Phaser.Scene {
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/newStarfield.png');
         this.load.image('background', './assets/starfieldBackground.png');
-        this.load.image('road', './assets/road.png');
-        this.load.image('mainBuilding', './assets/mainBuildings.png');
         this.load.image('backBuilding', './assets/backBuildings.png');
+        this.load.image('mainBuilding', './assets/mainBuildings.png');
+        this.load.image('road', './assets/road.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
       }

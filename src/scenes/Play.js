@@ -2,7 +2,6 @@ class Play extends Phaser.Scene {
     constructor() {
       super("playScene");
     }
-    
     create() {
         // place tile sprite
         this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
@@ -55,6 +54,7 @@ class Play extends Phaser.Scene {
         }
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, 'SCORE: ', this.p1Score, scoreConfig);
         //this.currTime = this.add.text(borderUISize + borderPadding-10, borderUISize + borderPadding*2, 'SCORE: ', this.clock, scoreConfig);
+        var timeText;
         var timeTextStyle = {font: "24px Roboto", fill: '#E43AA4', stroke: '#000', strokeThickness: 4}; 
         timeText = this.add.text(16,16, "Time Survived: ", timeTextStyle); //Elapsed Time Text
         // GAME OVER flag

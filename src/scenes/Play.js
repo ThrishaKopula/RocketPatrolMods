@@ -66,7 +66,7 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        game.debug.text('Elapsed seconds: ' + this.game.time.totalElapsedSeconds(), 32, 32);
+        this.add.text('Elapsed seconds: ' + this.game.time.totalElapsedSeconds(), 32, 32);
         // check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();

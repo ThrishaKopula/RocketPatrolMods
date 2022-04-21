@@ -54,7 +54,7 @@ class Play extends Phaser.Scene {
         }
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, 'SCORE: ', this.p1Score, scoreConfig);
         //this.currTime = this.add.text(borderUISize + borderPadding-10, borderUISize + borderPadding*2, 'SCORE: ', this.clock, scoreConfig);
-        var timeText;
+        //var timeText;
         var timeTextStyle = {font: "24px Roboto", fill: '#E43AA4', stroke: '#000', strokeThickness: 4}; 
         timeText = this.add.text(16,16, "Time Survived: ", timeTextStyle); //Elapsed Time Text
         // GAME OVER flag
@@ -69,7 +69,8 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        var gameRuntime = time * 0.001; //Converted to Seconds
+        var gameRuntime = this.time * 0.001; //Converted to Seconds
+        var timeText;
         timeText.setText("Time Survived: " + Math.round(gameRuntime) + " seconds");
         // check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {

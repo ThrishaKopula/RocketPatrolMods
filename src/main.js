@@ -4,7 +4,6 @@ let config = {
     height: 480,
     scene: [ Menu, Play ]
 }
-
 let game = new Phaser.Game(config);
 
 // set UI sizes
@@ -16,3 +15,4 @@ let keyF, keyR, keyLEFT, keyRIGHT;
 
 // 2nd player
 let keyW, keyA, keyD;
+

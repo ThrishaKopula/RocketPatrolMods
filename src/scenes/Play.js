@@ -1,3 +1,4 @@
+var text;
 class Play extends Phaser.Scene {
     constructor() {
       super("playScene");
@@ -52,8 +53,8 @@ class Play extends Phaser.Scene {
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, 'SCORE: ', this.p1Score, scoreConfig);
-        //this.currTime = this.add.text(borderUISize + borderPadding-10, borderUISize + borderPadding*2, 'SCORE: ', this.clock, scoreConfig);
+        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, 'SCORE: ');
+        this.scoreLeft = this.add.text(borderUISize + borderPadding+60, borderUISize + borderPadding*2, this.p1Score);
         // GAME OVER flag
         this.gameOver = false;
         // 60-second play clock
@@ -63,11 +64,12 @@ class Play extends Phaser.Scene {
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
+        text = this.add.text(160, 53);
     }
 
     update() {
-        this.add.text('Elapsed seconds: ' + this.game.time.totalElapsedSeconds(), 32, 32);
-        // check key input for restart
+        text.setText( 'TIME: ' + this.clock.getElapsedSeconds().toString().substr(0, 4));
+        // check key input for restarts
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
         }
@@ -116,6 +118,7 @@ class Play extends Phaser.Scene {
     shipExplode(ship) {
         // temporarily hide ship
         ship.alpha = 0;
+        this.sound.play('explosion');
         // create explosion sprite at ship's position
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
         boom.anims.play('explode');             // play explode animation
@@ -131,14 +134,15 @@ class Play extends Phaser.Scene {
 
     preload() {
         // load images/tile sprites
-        this.load.image('rocket', './assets/rocket.png');
-        this.load.image('spaceship', './assets/spaceship.png');
+        this.load.audio('explosion', './assets/explosion.wav');
+        this.load.image('rocket', './assets/fireball.png');
+        this.load.image('spaceship', './assets/ghost.png');
         this.load.image('starfield', './assets/newStarfield.png');
         this.load.image('background', './assets/starfieldBackground.png');
         this.load.image('backBuilding', './assets/backBuildings.png');
         this.load.image('mainBuilding', './assets/mainBuildings.png');
         this.load.image('road', './assets/road.png');
         // load spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-      }
+        this.load.spritesheet('explosion', './assets/newExplosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+    }
 }

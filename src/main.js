@@ -7,7 +7,6 @@
 
 //Note: You have to click on the screen to hear the background music because of a chrome error
 
-
 let config = {
     type: Phaser.CANVAS,
     width: 640,

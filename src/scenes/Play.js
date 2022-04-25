@@ -68,7 +68,7 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        text.setText( 'TIME: ' + this.clock.getElapsedSeconds().toString().substr(0, 4));
+        text.setText( 'TIME: ' + (60 - this.clock.getElapsedSeconds()).toString().substr(0, 4));
         // check key input for restarts
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();

@@ -1,4 +1,5 @@
 var text;
+var count = 0;
 class Play extends Phaser.Scene {
     constructor() {
       super("playScene");
@@ -40,6 +41,7 @@ class Play extends Phaser.Scene {
         });
         // initialize score
         this.p1Score = 0;
+        this.p2Score = 0;
          // display score
         let scoreConfig = {
             fontFamily: 'Courier',
@@ -53,15 +55,28 @@ class Play extends Phaser.Scene {
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, 'SCORE: ');
-        this.scoreLeft = this.add.text(borderUISize + borderPadding+60, borderUISize + borderPadding*2, this.p1Score);
+        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, 'P1 SCORE: ');
+        this.scoreLeft = this.add.text(borderUISize + borderPadding+90, borderUISize + borderPadding*2, this.p1Score);
+
+        this.scoreLeft2 = this.add.text(borderUISize + borderPadding+250, borderUISize + borderPadding*2, 'P2 SCORE: ');
+        this.scoreLeft2 = this.add.text(borderUISize + borderPadding+340, borderUISize + borderPadding*2, this.p2Score);
         // GAME OVER flag
         this.gameOver = false;
         // 60-second play clock
         scoreConfig.fixedWidth = 0;
+        let winner;
         this.clock = this.time.delayedCall(60000, () => {
+            if(this.p1Score > this.p2Score) {
+                winner = 'P1';
+            } else if(this.p2Score > this.p1Score) {
+                winner = 'P2';
+            } else {
+                winner = 'TIE';
+            }
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart', scoreConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 128, 'WINNER:', scoreConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2 + 80, game.config.height/2 + 128, winner, scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
         text = this.add.text(160, 53);
@@ -101,6 +116,13 @@ class Play extends Phaser.Scene {
             this.ship02.update();
             this.ship03.update();
         } 
+
+        if(keyF.isDown) {
+            count = 0;
+        }
+        if(keyW.isDown) {
+            count = 1;
+        }
     }
 
     checkCollision(rocket, ship) {
@@ -114,7 +136,6 @@ class Play extends Phaser.Scene {
             return false;
         }
     }
-
     shipExplode(ship) {
         // temporarily hide ship
         ship.alpha = 0;
@@ -126,10 +147,17 @@ class Play extends Phaser.Scene {
           ship.reset();                         // reset ship position
           ship.alpha = 1;                       // make ship visible again
           boom.destroy();                       // remove explosion sprite
-        });       
+        });
+        console.log("count: ", count);
+        if(count == 0) {
+            this.p1Score += ship.points;
+        } else if(count == 1) {
+            this.p2Score += ship.points;
+        }
         // score add and repaint
-        this.p1Score += ship.points;
+       // this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
+        this.scoreLeft2.text = this.p2Score;
     }
 
     preload() {

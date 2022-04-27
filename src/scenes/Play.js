@@ -148,7 +148,6 @@ class Play extends Phaser.Scene {
           ship.alpha = 1;                       // make ship visible again
           boom.destroy();                       // remove explosion sprite
         });
-        console.log("count: ", count);
         if(count == 0) {
             this.p1Score += ship.points;
         } else if(count == 1) {
